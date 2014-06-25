@@ -25,6 +25,8 @@ int main(int argc, char** argv)
 {
     
     cout << "Hello!\n";
+    //main.cpp:27:11: error: expected ‘;’ before string constant
+    //main.cpp:27:5: error: ‘cot’ was not declared in this scope
     
     int number_of_pods, peas_per_pod, total_peas;
     cout << "Press return after entering a number.\n";
@@ -50,5 +52,5 @@ int main(int argc, char** argv)
     
     cout << "Good-bye\n";
     return 0;
-}
+}//main.cpp:54:13: error: expected ‘}’ at end of input
 
