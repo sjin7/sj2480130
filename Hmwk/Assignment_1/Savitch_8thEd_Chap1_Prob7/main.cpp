@@ -18,19 +18,29 @@ using namespace std;
 //Execution Begins Here!
 int main(int argc, char** argv) {
 
-    for (int i=0; i<50; i++){
+    for (int i=0; i<50; i++)
+    {
+        cout << "*";
+    }
+    cout << endl;
+   
+    cout << "        C C C                  S S S S           !!\n";
+    cout << "      C       C              S         S         !!\n";
+    cout << "     C                      S                    !!\n";
+    cout << "    C                        S                   !!\n";
+    cout << "    C                          S S S             !!\n";
+    cout << "    C                                 S          !!\n";
+    cout << "     C                                 S         !!\n";
+    cout << "      C        C             S        S            \n";
+    cout << "        C C C                  S S S S           00\n";
+            
+    for (int i=0; i<50; i++)
+    {
         cout << "*";
     }
     cout << endl;
     
-    cout << "   C C C                  S S S S           !!\n";
-    cout << " C       C              S         S         !!\n";
-    cout << "C
-            
-    cout << endl;
-    for (int i=0; i<50; i++){
-        cout << "*";
-    }
+    cout << "    Computer Science is Cool Stuff!!!\n";
     
     return 0;
 }
