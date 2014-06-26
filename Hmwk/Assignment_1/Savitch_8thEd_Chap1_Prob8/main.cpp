@@ -18,7 +18,7 @@ using namespace std;
 //Execution Begins Here!
 int main(int argc, char** argv) {
 
-    int quart, dime, nikl, cent; //Declaration
+    int quart, dime, nik, cent; //Declaration
     
     cout << "This program will help you calculate the change you have"
             "into cents.\n";
@@ -31,10 +31,10 @@ int main(int argc, char** argv) {
     cin >> dime;
     
     cout << "Nickels: ";
-    cin >> nikl;
+    cin >> nik;
     
     //Calculation
-    cent = quart * 25 + dime * 10 + nikl * 5; 
+    cent = quart * 25 + dime * 10 + nik * 5; 
     cout << "You have ";
     cout << cent;
     cout << " cents in total." << endl;

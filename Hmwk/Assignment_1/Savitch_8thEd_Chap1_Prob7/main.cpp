@@ -18,7 +18,7 @@ using namespace std;
 //Execution Begins Here!
 int main(int argc, char** argv) {
 
-    for (int i=0; i<50; i++)
+    for (int i=0; i<55; i++)
     {
         cout << "*";
     }
@@ -34,13 +34,13 @@ int main(int argc, char** argv) {
     cout << "      C        C             S        S            \n";
     cout << "        C C C                  S S S S           00\n";
             
-    for (int i=0; i<50; i++)
+    for (int i=0; i<55; i++)
     {
         cout << "*";
     }
     cout << endl;
     
-    cout << "    Computer Science is Cool Stuff!!!\n";
+    cout << "    Computer Science is Cool Stuff!!!" << endl;
     
     return 0;
 }
