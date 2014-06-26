@@ -6,7 +6,6 @@
 
 //System Libraries
 #include <iostream>
-#include <iomanip>
 
 using namespace std;
 
@@ -19,27 +18,26 @@ using namespace std;
 //Execution Begins Here!
 int main(int argc, char** argv) {
 
-    int quart, dime, nikl, cent;
-    cent = quart * 25 + dime * 10 + nikl * 5;
+    int quart, dime, nikl, cent; //Declaration
     
     cout << "This program will help you calculate the change you have"
             "into cents.\n";
     
-    cout << "Quarters: \n";
+    //Prompt user
+    cout << "Quarters: "; 
     cin >> quart;
     
-    cout << "Dimes: \n";
+    cout << "Dimes: ";
     cin >> dime;
     
-    cout << "Nickels: \n";
+    cout << "Nickels: ";
     cin >> nikl;
     
+    //Calculation
+    cent = quart * 25 + dime * 10 + nikl * 5; 
     cout << "You have ";
     cout << cent;
     cout << " cents in total." << endl;
-    
-    
-    
     
     
     return 0;
