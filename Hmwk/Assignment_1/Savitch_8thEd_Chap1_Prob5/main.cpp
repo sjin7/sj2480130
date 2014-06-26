@@ -17,6 +17,7 @@ using namespace std;
 //Execution Begins Here!
 int main(int argc, char** argv) {
     
+    //Declare Variables and Calculation
     int num1, num2;
     int sum = num1 + num2;
     int prod = num1 * num2;
