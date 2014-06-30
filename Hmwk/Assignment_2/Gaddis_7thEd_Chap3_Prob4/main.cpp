@@ -20,7 +20,7 @@ using namespace std;
 int main(int argc, char** argv) {
 
     //Declare Variables
-    char M1, M2, M3;
+    string M1, M2, M3;
     float R1, R2, R3;
     float avg;
     
@@ -46,13 +46,14 @@ int main(int argc, char** argv) {
     cout << "Rainfall(in): ";
     cin >> R2;
     
-     cout << "------------------\n";
+    cout << "------------------\n";
      
      //Calculation
-     avg = (R1 + R2 + R3) /3;
-     cout << "The average rainfall for " 
-          << M1 << ", " << M2 << " and " << M3
-          << " is " << avg << "." << endl;
+    avg = (R1 + R2 + R3) /3;
+    cout << "The average rainfall for " 
+         << M1 << ", " << M2 << " and " << M3
+         << " is " << fixed << setprecision(2) << showpoint 
+         << avg << "." << endl;
              
     return 0;
 }
