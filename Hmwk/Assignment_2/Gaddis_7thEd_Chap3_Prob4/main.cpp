@@ -50,10 +50,10 @@ int main(int argc, char** argv) {
      
      //Calculation
     avg = (R1 + R2 + R3) /3;
+    cout <<fixed << showpoint << setprecision(2) << endl;  
     cout << "The average rainfall for " 
          << M1 << ", " << M2 << " and " << M3
-         << " is " << fixed << setprecision(2) << showpoint 
-         << avg << "." << endl;
+         << " is " << avg << "." << endl;
              
     return 0;
 }
