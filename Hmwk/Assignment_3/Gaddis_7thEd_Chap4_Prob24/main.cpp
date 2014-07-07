@@ -1,7 +1,7 @@
 /* 
  * File:   Gaddis_7thEd_Chap4_Prob21
  * Author: Shen Jin
- * Created on July 7, 2014, 1:30 AM
+ * Created on July 7, 2014, 10:46 AM
  */
 
 //System Library
@@ -24,13 +24,16 @@ int h1 = 10, h2 = 20;
 
 //Execution Begins Here!
 int main(int argc, char** argv) {
+
     
     //Declare Input Variables
-    int hour; // Hours used in a month
+    float hour; // Hours used in a month    
     char package; //type of package
     
     //Declare Output Variable
+    float houR; // The extra hours used on top of what's included in the pack
     float cost; //Total cost of the month
+    float save; // How much the user could've saved if it were a different pack
     
     //Set decimal places for the outputs
     cout << fixed << setprecision(2) << showpoint << endl;
@@ -45,36 +48,40 @@ int main(int argc, char** argv) {
     switch(package)
     {
         case 'A':
-            if (hour>=10 && hour <=774 )
+            if (hour>12.5 && hour <=774 )
             {
-            cost = rate1 + (hour - h1) * r1;
-            cout << "Cost: $" << cost << endl;
+            houR = hour - h1;
+            cost = rate1 + houR * r1;
+            save = cost - rate2;
+            cout << "You could've saved $" << save 
+                 << " if you had packageB." << endl;
             }
             else 
             {
-                cout << "Cost: $" << rate1 << endl;
+                cout << endl;
             }
             break;
         case 'B':
-            if (hour>20 && hour <=774 )
+            if (hour>25 && hour <=774 )
             {
-            cost = rate2 + (hour - h2) * r2;
-            cout << "Cost: $" << cost << endl;
+            houR = hour - h2;
+            cost = rate2 + houR * r2;
+            save = cost - rate3;
+            cout << "You could've saved $" << save 
+                 << " if you had packageC." << endl;
             }
             else
             {
-                cout << "Cost: &" << rate2 << endl;
+                cout << endl;
             }
             break;
-        case 'C' :
-            cost = rate3;
-            cout << "Cost: &" << rate3 << endl;
+        case 'C' :            
+            cout << endl;
             break;
         default:
             cout << "Invalid Entry." << endl;
-            cout << "Cost: $" << cost << endl;
+            
     }
-    
     return 0;
 }
 
