@@ -14,7 +14,7 @@ using namespace std;
 
 //Global Constants
 //Rate per minute at different time of the day
-float R1 = 0.12, R2 = 0.55, R3 = 0.35;
+float r1 = 1.2e-1f, r2 = 5.5e-1f, r3 = 3.5e-1f;
 
 //Function Prototypes
 
@@ -44,17 +44,17 @@ int main(int argc, char** argv) {
     }
     else if (time>=0.00 && time<=6.59)
     {
-        cost = min * R1;
+        cost = min * r1;
         cout << "Cost: &" << cost << endl;
     }
     else if (time>=7.00 && time<=19.00)
     {
-         cost = min * R2;
+         cost = min * r2;
          cout << "Cost: &" << cost << endl;
     }
     else 
     {
-         cost = min * R3;
+         cost = min * r3;
          cout << "Cost: &" << cost << endl;
     }
    

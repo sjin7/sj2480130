@@ -20,19 +20,19 @@ float pi = 3.14159;
 //Execution Begins Here!
 int main(int argc, char** argv) {
 
-    float A; //Area
-    float R; //Radius
-    float W; //Width
-    float L; //Length
-    float B; //Base
-    float H; //Height
+    float a; //Area
+    float r; //Radius
+    float w; //Width
+    float l; //Length
+    float b; //Base
+    float h; //Height
     int choice; //input 1-4 on the menu
         
     //Constants for choice
-    const int Circle = 1,
-              Rectangle = 2, 
-              Triangle = 3,
-              Quit = 4;
+    const int circle = 1,
+              rectangle = 2, 
+              triangle = 3,
+              quit = 4;
     
     // Set up the menu and get a choice
     cout << "Choose 1-4 to do the type of calculation you want." << endl;
@@ -48,50 +48,50 @@ int main(int argc, char** argv) {
     //Respond to the user's menu selection
         switch (choice)
         {
-            case Circle:              
+            case circle:              
                 cout << "What is the radius of the circle?" << endl;
-                cin >> R;
-                 if (R<0)
+                cin >> r;
+                 if (r<0)
                 {
                     cout << "Entry is too small." << endl;
                 }
                  else
                 {
-                A = pi * R * R;
-                cout << "The area of this circle is " << A << endl;
+                a = pi * r * r;
+                cout << "The area of this circle is " << a << endl;
                  }
                 break;
-            case Rectangle:
+            case rectangle:
                 cout << "Witdth: ";
-                cin >> W;
+                cin >> w;
                 cout << "Length: ";
-                cin >> L;
-                if (W<0 || L<0)
+                cin >> l;
+                if (w<0 || l<0)
                 {
                     cout << "Entry is too small." << endl;
                 }
                 else
                 {
-                A = W * L;
-                cout << "The area of this rectangle is " << A << endl;
+                a = w * l;
+                cout << "The area of this rectangle is " << a << endl;
                 }
                 break;
-            case Triangle:
+            case triangle:
                 cout << "Base: ";
-                cin >> B;
+                cin >> b;
                 cout << "Height: ";
-                cin >> H;
-                if (B<0 || H<0)
+                cin >> h;
+                if (b<0 || h<0)
                 {
                     cout << "Entry is too small." << endl;
                 }
                 else
                 {
-                A = B * H / 2;
-                cout << "The area of this triangle is " << A << endl;
+                a = b * h / 2;
+                cout << "The area of this triangle is " << a << endl;
                 }
                 break;
-            case Quit:
+            case quit:
                 cout << "Program ending." << endl;
                 break;
             default:

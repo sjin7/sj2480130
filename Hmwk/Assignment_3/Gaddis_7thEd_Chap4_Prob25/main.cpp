@@ -1,7 +1,7 @@
 /* 
- * File:   Gaddis_7thEd_Chap4_Prob24
+ * File:   Gaddis_7thEd_Chap4_Prob25
  * Author: Shen Jin
- * Created on July 7, 2014, 10:46 AM
+ * Created on July 7, 2014, 11:35 AM
  */
 
 //System Library
@@ -24,16 +24,14 @@ int h1 = 10, h2 = 20;
 
 //Execution Begins Here!
 int main(int argc, char** argv) {
-
     
     //Declare Input Variables
-    float hour; // Hours used in a month    
+    int hour; // Hours used in a month
     char package; //type of package
+    char month; //The month picked by the user
     
     //Declare Output Variable
-    float houR; // The extra hours used on top of what's included in the pack
     float cost; //Total cost of the month
-    float save; // How much the user could've saved if it were a different pack
     
     //Set decimal places for the outputs
     cout << fixed << setprecision(2) << showpoint << endl;
@@ -41,6 +39,8 @@ int main(int argc, char** argv) {
     //Get the outputs
     cout << "What type of package do you have?" << endl;
     cin >> package;
+    cout << "Which month did you want to calculate?" << endl;
+    cin >> month;
     cout << "How many hours did you use this month?" <<endl;
     cin >> hour;
 
@@ -48,40 +48,40 @@ int main(int argc, char** argv) {
     switch(package)
     {
         case 'A':
-            if (hour>12.5 && hour <=774 )
+            if (month=="Jan" || month=="Mar" || month=="May" || month=="Jul"
+                    || month=="Aug" || month=="Oct" || month=="Dec")
             {
-            houR = hour - h1;
-            cost = rate1 + houR * r1;
-            save = cost - rate2;
-            cout << "You could've saved $" << save 
-                 << " if you had packageB." << endl;
+            if (hour>10 && hour <=774 )
+            {
+            cost = rate1 + (hour - h1) * r1;
+            cout << "Cost: $" << cost << endl;
             }
-            else 
-            {
-                cout << endl;
+            else if (hour<=10)
+                cout << "Cost: $" << rate1 << endl;                      
+            else
+                cout << "Invalid Hours." << endl
             }
             break;
         case 'B':
-            if (hour>25 && hour <=774 )
+            if (hour>20 && hour <=774 )
             {
-            houR = hour - h2;
-            cost = rate2 + houR * r2;
-            save = cost - rate3;
-            cout << "You could've saved $" << save 
-                 << " if you had packageC." << endl;
+            cost = rate2 + (hour - h2) * r2;
+            cout << "Cost: $" << cost << endl;
             }
             else
             {
-                cout << endl;
+                cout << "Cost: &" << rate2 << endl;
             }
             break;
-        case 'C' :            
-            cout << endl;
+        case 'C' :
+            cost = rate3;
+            cout << "Cost: &" << rate3 << endl;
             break;
         default:
             cout << "Invalid Entry." << endl;
-            
+            cout << "Cost: $" << cost << endl;
     }
+    
     return 0;
 }
 

@@ -30,10 +30,10 @@ int main(int argc, char** argv) {
     float D; //Distance traveled
     
     //Constants for choice
-    const int NO2 = 1,
-              Air = 2,
-              He = 3,
-              H = 4;
+    const int no2 = 1,
+              air = 2,
+               he = 3,
+                h = 4;
     
     //Set up menu and collect choice
     cout << "Choose of the four gases and input the time it takes to travel,\n";
@@ -46,7 +46,7 @@ int main(int argc, char** argv) {
     
     switch (choice)
     {
-        case NO2:
+        case no2:
             cout << "Time(sec) : ";
             cin >> sec;
               if (sec<0 || sec >30)
@@ -59,7 +59,7 @@ int main(int argc, char** argv) {
             cout << "Distance: " << D << "m" << endl;
               }
             break;
-        case Air:
+        case air:
             cout << "Time(sec) : ";
             cin >> sec;
               if (sec<0 || sec >30)
@@ -72,7 +72,7 @@ int main(int argc, char** argv) {
             cout << "Distance: " << D << "m" << endl;
               }
             break;
-        case He:
+        case he:
             cout << "Time(sec) : ";
             cin >> sec;
               if (sec<0 || sec >30)
@@ -85,7 +85,7 @@ int main(int argc, char** argv) {
             cout << "Distance: " << D << "m" << endl;
               }
             break;
-        case H:
+        case h:
             cout << "Time(sec) : ";
             cin >> sec;
               if (sec<0 || sec >30)
