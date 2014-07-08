@@ -31,33 +31,68 @@ int main(int argc, char** argv) {
     
     cout << fixed << showpoint << setprecision(2) << endl;
     cout << "What is the beginning balance of your account?" << endl;
-    cin >> bgBal;
-    if(bgBal < 0)
-       cout << "Your account is overdrawn." << endl;
-    else if (bgBal>0 && bgBal<400)
-        
-    
+    cin >> bgBal;           
     cout << "How many checks did you used?" <<endl;
     cin >> check;
+    
+    if(bgBal < 0)
+       cout << "Your account is overdrawn." << endl;   
+    
     if (check<20 && check>0)
     {
+        if (bgBal > 400)
+        {
         fee = monthly + rate1 * check;
         cout << "Service Fee: $" << fee << endl;
+        }
+        else
+        {
+        fee = monthly + rate1 * check;
+        fee+=extra;
+        cout << "Service Fee: $" << fee << endl;
+        }
     }
     else if (check>=20 && check<=39)
     {
+       if (bgBal > 400)
+        {
         fee = monthly + rate2 * check;
         cout << "Service Fee: $" << fee << endl;
+        }
+        else
+        {
+        fee = monthly + rate1 * check;
+        fee+=extra;
+        cout << "Service Fee: $" << fee << endl;
+        }
     }
     else if (check>=40 && check<=59)
     {
+        if (bgBal > 400)
+        {
         fee = monthly + rate3 * check;
         cout << "Service Fee: $" << fee << endl;
+        }
+        else
+        {
+        fee = monthly + rate1 * check;
+        fee+=extra;
+        cout << "Service Fee: $" << fee << endl;
+        }
     }
     else if (check>=60)
     {
+       if (bgBal > 400)
+        {
         fee = monthly + rate4 * check;
         cout << "Service Fee: $" << fee << endl;
+        }
+        else
+        {
+        fee = monthly + rate1 * check;
+        fee += extra;
+        cout << "Service Fee: $" << fee << endl;
+        }
     }
     else
         cout << "Invalid Entry." << endl;
