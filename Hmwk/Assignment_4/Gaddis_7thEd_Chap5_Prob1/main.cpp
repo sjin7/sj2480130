@@ -18,15 +18,17 @@ using namespace std;
 int main(int argc, char** argv) {
 
     //Declare Variables
-    int num;
+    //Initialization
+    int num = 1;
     int total=0;
+    int n;
     
     //Get the inputs
     cout << "Give me a positive integer value." << endl;
     cout << "I'll tell you the sum of all numbers starting from 1." << endl;
-    cin >> num;
+    cin >> n;
     
-    for (int i=1; i<=num; i++)
+    for (num=1; num <=n; num++)
     {
         total += num;
     }
