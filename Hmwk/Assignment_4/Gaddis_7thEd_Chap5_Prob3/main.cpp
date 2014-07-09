@@ -6,6 +6,7 @@
 
 //System Library
 #include <iostream>
+#include <iomanip>
 
 using namespace std;
 
@@ -26,13 +27,15 @@ int main(int argc, char** argv) {
     float totR = 0; // Total raise of the ocean level
     int num; // Number of years
     
+    //Set numeric output formatting
+    cout << fixed << showpoint << setprecision(1) << endl;
     cout << "Year             Ocean Level Increase(ml)" << endl;
     cout << "-----------------------------------------" << endl;
     
     for (num=stYr; num<=edYr; num++)
     {
         totR +=r;
-        cout << num << "                  " << totR << endl;
+        cout << num << setw(20) << totR << endl;
     }
     
     return 0;
