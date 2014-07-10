@@ -12,7 +12,6 @@ using namespace std;
 //User Defined Libraries
 
 //Global Constants
-int month = 12; //There are 12 months in a year
 
 //Function Prototypes
 
@@ -20,6 +19,7 @@ int month = 12; //There are 12 months in a year
 int main(int argc, char** argv) {
     
     //Declare Variables
+    const int month = 12; //There are 12 months in a year
     int year;//User input the number of years
     int yr; // Initial
     int totMon; //Total months in this calculation
