@@ -12,8 +12,6 @@ using namespace std;
 //User Defined Libraries
 
 //Global Constants
-int minIncr = 5; //Every 5min
-float cal = 3.9; // Burns 3.9 calories per min
 
 //Function Prototypes
 
@@ -22,6 +20,8 @@ int main(int argc, char** argv) {
 
     //Declare Variables
     //Initialization
+    int minIncr = 5; //Every 5min
+    float cal = 3.9; // Burns 3.9 calories per min
     int stT = 10; //Starts to increase at 10min
     int edT = 30; //Ends at 30min
     float totC = 39.0; // 39 calories were burnt in 10min
