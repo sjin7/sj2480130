@@ -21,11 +21,11 @@ int main(int argc, char** argv) {
     
     //Declare Variables
     //Rates for different packages
-    float rate1 = 9.95, rate2 = 14.95, rate3 = 19.95;
+    const float rate1 = 9.95, rate2 = 14.95, rate3 = 19.95;
     //Rates for the "overtime" for the first two packages
-    float r1 = 2.00, r2 = 1.00;
+    const float r1 = 2.00, r2 = 1.00;
     //Hours included in first two packages
-    int h1 = 10, h2 = 20;
+    const int h1 = 10, h2 = 20;
 
     //Declare Input Variables
     int hour; // Hours used in a month
