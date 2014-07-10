@@ -13,7 +13,6 @@ using namespace std;
 //User Defined Libraries
 
 //Global Constants
-float r = 1.5; // The ocean level raises by 1.5ml/yr
 
 //Function Prototypes
 
@@ -22,6 +21,7 @@ int main(int argc, char** argv) {
 
     //Declare Variables
     //Initialization
+    const float r = 1.5; // The ocean level raises by 1.5ml/yr
     int stYr = 1; // Starting year
     int edYr = 25; // Ending year
     float totR = 0; // Total raise of the ocean level
