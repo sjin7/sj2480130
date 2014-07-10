@@ -14,6 +14,7 @@ using namespace std;
 //User Defined Libraries
 
 //Global Constants
+const int CVP = 100; // percentage 
 
 //Function Prototypes
 
@@ -50,7 +51,7 @@ int main(int argc, char** argv) {
         totO += occu;
      }
      //Calculation for percentage of occupancy
-    percent = static_cast<float>(totO) / static_cast<float>(totR) * 100;
+    percent = static_cast<float>(totO) / static_cast<float>(totR) * CVP;
         cout << "There are " << totR << " rooms, and "
                 << totO << " are occupied which is "  <<
                 percent << "%, therefore, there are "
