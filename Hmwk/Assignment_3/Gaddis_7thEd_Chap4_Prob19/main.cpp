@@ -13,10 +13,6 @@ using namespace std;
 //User Defined Libraries
 
 //Global Constants
-float speed1 = 258.0,
-      speed2 = 331.5,
-      speed3 = 972.0,
-      speed4 =1270.0;
 
 //Function Prototypes
 
@@ -24,6 +20,10 @@ float speed1 = 258.0,
 int main(int argc, char** argv) {
 
     //Declare Variable
+    float speed1 = 258.0,
+          speed2 = 331.5,
+          speed3 = 972.0,
+          speed4 =1270.0;
     //Input
     int sec;
     int choice; // Input 1-4 from menu
