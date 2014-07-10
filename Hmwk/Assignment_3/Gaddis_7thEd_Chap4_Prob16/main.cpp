@@ -13,7 +13,6 @@ using namespace std;
 //User Defined Libraries
 
 //Global Constants
-int fatgram = 9; //One gram of fat has 9 calories
 
 //Function Prototypes
 
@@ -24,6 +23,7 @@ int main(int argc, char** argv) {
     int cal; // number of calories
     int fatgram; // number of fat gram
     int fatcal; // calories from the fat
+    int fatgram = 9; //One gram of fat has 9 calories
     
     //Declare Output Variables
     int total; // Total calories
