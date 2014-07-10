@@ -20,7 +20,7 @@ using namespace std;
 int main(int argc, char** argv) {
 
     //Declare Variable
-    float speed1 = 258.0,
+   const float speed1 = 258.0,
           speed2 = 331.5,
           speed3 = 972.0,
           speed4 =1270.0;
