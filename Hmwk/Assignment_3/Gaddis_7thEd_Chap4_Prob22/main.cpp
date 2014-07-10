@@ -13,14 +13,15 @@ using namespace std;
 //User Defined Libraries
 
 //Global Constants
-//Rate per minute at different time of the day
-float r1 = 1.2e-1f, r2 = 5.5e-1f, r3 = 3.5e-1f;
 
 //Function Prototypes
 
 //Execution Begins Here!
 int main(int argc, char** argv) {
 
+    //Declare Variables
+    //Rate per minute at different time of the day
+    float r1 = 1.2e-1f, r2 = 5.5e-1f, r3 = 3.5e-1f;
     //Declare Input Variables
     float time; // The starting time for the calls
     int min; // How many minutes the call lasted
