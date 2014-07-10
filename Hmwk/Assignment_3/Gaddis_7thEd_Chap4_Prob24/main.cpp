@@ -13,19 +13,20 @@ using namespace std;
 //User Defined Libraries
 
 //Global Constants
-//Rates for different packages
-float rate1 = 9.95, rate2 = 14.95, rate3 = 19.95;
-//Rates for the "overtime" for the first two packages
-float r1 = 2.00, r2 = 1.00;
-//Hours included in first two packages
-int h1 = 10, h2 = 20;
 
 //Function Prototypes
 
 //Execution Begins Here!
 int main(int argc, char** argv) {
 
-    
+    //Declare Variables
+    //Rates for different packages
+    const float rate1 = 9.95, rate2 = 14.95, rate3 = 19.95;
+    //Rates for the "overtime" for the first two packages
+    const float r1 = 2.00, r2 = 1.00;
+    //Hours included in first two packages
+    const int h1 = 10, h2 = 20;
+
     //Declare Input Variables
     float hour; // Hours used in a month    
     char package; //type of package
