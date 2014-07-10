@@ -27,17 +27,17 @@ int main(int argc, char** argv) {
     cin >> length;
     
     if (length<0 || length>15)
-        cout << "Invalide Entry." << endl;
+        cout << "Invalid Entry." << endl;
     
     for (int i=1; i<=length; i++)
     {
-//        for (int j=1; j=i; j++)
-//        {
-        cout << "X";
-//        }
-       
+        for (int j=1; j<=length; j++)
+        {
+        cout << "X" ;
+        }
+        cout << endl;
     }
-     cout << endl;
+    
     return 0;
 }
 
