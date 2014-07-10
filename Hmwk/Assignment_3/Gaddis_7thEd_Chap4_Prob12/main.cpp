@@ -13,9 +13,6 @@ using namespace std;
 //User Defined Libraries
 
 //Global Constants
-float monthly = 10.00;//Monthly charge for having an account
-float rate1 = 1e-1f, rate2 = 8e-2f, rate3 = 6e-2f, rate4 = 4e-2f;
-float extra = 15.00;
 
 //Function Prototypes
 
@@ -25,6 +22,9 @@ int main(int argc, char** argv) {
     //Declare Input Variable
     float bgBal; // Beginning Balance
     int check; // Number of checks
+    float monthly = 10.00;//Monthly charge for having an account
+    float rate1 = 1e-1f, rate2 = 8e-2f, rate3 = 6e-2f, rate4 = 4e-2f;
+    float extra = 15.00;
     
     //Declare Output Variable
     float fee; // Service fee
