@@ -14,7 +14,7 @@ using namespace std;
 //User Defined Libraries
 
 //Global Constants
-const int CVP = 100; // percentage 
+const int CVP = 100.0f; // percentage 
 
 //Function Prototypes
 
