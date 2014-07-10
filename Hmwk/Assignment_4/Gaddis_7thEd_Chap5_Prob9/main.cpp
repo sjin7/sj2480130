@@ -52,10 +52,10 @@ int main(int argc, char** argv) {
      }
      //Calculation for percentage of occupancy
     percent = static_cast<float>(totO) / static_cast<float>(totR) * CVP;
-        cout << "There are " << totR << " rooms, and "
-                << totO << " are occupied which is "  <<
-                percent << "%, therefore, there are "
-                << totR-totO << " rooms that are unoccupied." << endl;
+    cout << "There are " << totR << " rooms, and "
+         << totO << " are occupied which is "  <<
+         percent << "%, therefore, there are "
+         << totR-totO << " rooms that are unoccupied." << endl;
     
     
     
