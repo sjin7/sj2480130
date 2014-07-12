@@ -7,6 +7,7 @@
 
 //System Library
 #include <iostream>
+#include <iomanip>
 
 
 using namespace std;
@@ -34,7 +35,13 @@ int main(int argc, char** argv) {
     cout << "How many floors does this hotel have in total?" << endl;
     cin >> numFl;
     
-    
+    //Validate Inputs
+    if (numFl <= 0)
+    {
+        cout << "Invalid Entry." << endl;
+    }
+    else
+    {
     for (floor=1; floor<=numFl; floor++)
     {
         if(floor==13)
@@ -53,10 +60,11 @@ int main(int argc, char** argv) {
      //Calculation for percentage of occupancy
     percent = static_cast<float>(totO) / static_cast<float>(totR) * CVP;
     cout << "There are " << totR << " rooms, and "
-         << totO << " are occupied which is "  <<
-         percent << "%, therefore, there are "
+         << totO << " are occupied which is " 
+         << fixed << showpoint << setprecision(2)
+         << percent << "%, therefore, there are "
          << totR-totO << " rooms that are unoccupied." << endl;
-    
+    }
     
     
             return 0;
