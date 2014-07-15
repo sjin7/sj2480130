@@ -74,7 +74,6 @@ int main(int argc, char** argv) {
             break;
         default:
             cout << "Invalid Entry." << endl;
-            cout << "Cost: $" << cost << endl;
     }
     
     return 0;
