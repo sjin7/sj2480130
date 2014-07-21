@@ -40,6 +40,9 @@ float bet;                      //The amount bet
 float amnt;                     // The amount the player have after game
 char again;                     //If the player wants to play again
 
+//Arrays for case B-- color bet
+int red[18]={1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36};
+int black[18]={2,4,6,8,10,11,13,15,17,20,22,24,26,28,29,31,33,35};
 
 //Set the random number seed
 srand(time(0));   
@@ -99,60 +102,58 @@ case 'a':
     break;
 case 'B':
 case 'b':            
-//    cout << "Would you like to bet on black or red?" << endl;
-//    cin >> color;
-//
-//    bool black=rand()%2; //Remainder 0, 1
-//    cout << setw(8) << "Number" << setw(15) << "Your Pick" << endl;
-//    cout << "----------------------------" << endl;
-//    cout << setw(6) << num << setw(12) << color << endl;
-//    cout << fixed << showpoint << setprecision(2) << endl;
-//    if(black && color=='black')
-//    { 
-//        amnt = bank - bet + bet * 2;                    //Calculation
-//        cout << "Congratulations! You won $" << bet * 2 << endl;
-//        cout << "Now you have $" << amnt<< endl;
-//    }
-//    else if(color=='red')
-//    {
-//        amnt = bank - bet + bet * 2;                    //Calculation
-//        cout << "Congratulations! You won $" << bet * 2 << endl;
-//        cout << "Now you have $" << amnt<< endl;
-//    }
-//    else
-//    {
-//        cout << "Sorry, you lost $" << bet << endl;
-//        cout << "Now you have $" << bank - bet << endl;
-//        cout << "Good luck on your next spin!" << endl << endl;
-//    }
-//    break;
-//case 'C':
-//case 'c': 
-//    cout << "Would you like to place your bet on E(even) "
-//            "or O(odd)?" << endl;
-//    cin >> choice;
-//    cout << setw(8) << "Number" << setw(15) << "Your Pick" << endl;
-//    cout << "----------------------------" << endl;
-//    cout << setw(6) << num << setw(12) << choice << endl;
-//    cout << fixed << showpoint << setprecision(2) << endl;
-//    if(num%2==0 && (choice == 'E'|| choice == 'e'))
-//    { 
-//    amnt = bank - bet + bet * 2;                 //Calculation
-//    cout << "Congratulations! You won $" << bet * 2 << endl;
-//    cout << "Now you have $" << amnt<< endl;
-//    }          
-//    else if(num%2==1 && (choice == 'O'||choice == 'o'))
-//    {
-//    amnt = bank - bet + bet * 2;                //Calculation
-//    cout << "Congratulations! You won $" << bet * 2 << endl;
-//    cout << "Now you have $" << amnt<< endl << endl;
-//    }
-//     else
-//    {
-//    cout << "Sorry, you lost $" << bet << endl;
-//    cout << "Now you have $" << bank - bet << endl;
-//    cout << "Good luck on your next spin!" << endl << endl;
-//    }
+    cout << "Would you like to bet on black or red?" << endl;
+    cin >> color;
+    cout << setw(8) << "Number" << setw(15) << "Your Pick" << endl;
+    cout << "----------------------------" << endl;
+    cout << setw(6) << num << setw(12) << color << endl;
+    cout << fixed << showpoint << setprecision(2) << endl;
+    if(color=='black' || num==black[18])
+    { 
+        amnt = bank - bet + bet * 2;                    //Calculation
+        cout << "Congratulations! You won $" << bet * 2 << endl;
+        cout << "Now you have $" << amnt<< endl;
+    }
+    else if(color=='red' || num==red[18])
+    {
+        amnt = bank - bet + bet * 2;                    //Calculation
+        cout << "Congratulations! You won $" << bet * 2 << endl;
+        cout << "Now you have $" << amnt<< endl;
+    }
+    else
+    {
+        cout << "Sorry, you lost $" << bet << endl;
+        cout << "Now you have $" << bank - bet << endl;
+        cout << "Good luck on your next spin!" << endl << endl;
+    }
+    break;
+case 'C':
+case 'c': 
+    cout << "Would you like to place your bet on E(even) "
+            "or O(odd)?" << endl;
+    cin >> choice;
+    cout << setw(8) << "Number" << setw(15) << "Your Pick" << endl;
+    cout << "----------------------------" << endl;
+    cout << setw(6) << num << setw(12) << choice << endl;
+    cout << fixed << showpoint << setprecision(2) << endl;
+    if(num%2==0 && (choice == 'E'|| choice == 'e'))
+    { 
+    amnt = bank - bet + bet * 2;                 //Calculation
+    cout << "Congratulations! You won $" << bet * 2 << endl;
+    cout << "Now you have $" << amnt<< endl;
+    }          
+    else if(num%2==1 && (choice == 'O'||choice == 'o'))
+    {
+    amnt = bank - bet + bet * 2;                //Calculation
+    cout << "Congratulations! You won $" << bet * 2 << endl;
+    cout << "Now you have $" << amnt<< endl << endl;
+    }
+     else
+    {
+    cout << "Sorry, you lost $" << bet << endl;
+    cout << "Now you have $" << bank - bet << endl;
+    cout << "Good luck on your next spin!" << endl << endl;
+    }
     break;
 case 'D':
 case 'd':
