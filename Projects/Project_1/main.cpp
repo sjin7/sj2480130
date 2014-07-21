@@ -17,7 +17,7 @@ using namespace std;
 //Global Constants
 
 //Function Prototypes
-
+void question(float &bank, float &bet);
 //Execution Begins Here!
 int main(int argc, char** argv) {
 
@@ -34,17 +34,13 @@ unsigned short numBet;          //The number bet
 unsigned short num;             //The actual number off the spins
 char choice;                    //The player bet on even or odd number 
 bool co;                        //The color that gives off by the spin
-char color;                     //The color of the number bet
-char range;                     //The range of the number bet
+string color;                   //The color of the number bet
+string range;                   //The range of the number bet
 float bank;                     //The original total that the player has
 float bet;                      //The amount bet
 float amnt;                     //The amount the player have after game
 char again;                     //If the player wants to play again
 bool invalid;
-
-//Arrays for case B -- color bet
-int red[18]={1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36};
-int black[18]={2,4,6,8,10,11,13,15,17,20,22,24,26,28,29,31,33,35};
 
 //Set the random number seed
 srand(static_cast<unsigned short>(time(0)));   
@@ -62,17 +58,14 @@ do{                                  //Would you like to play again{
             cout << "Type C if you want to bet whether the number is odd or even." <<endl;
             cout << "Type D if you want to bet on a dozen of numbers by ranging."<< endl;
             cin >> type;
-            cout << "How much total do you have? " << endl;
-            cin >> bank;
-            cout << "How much would you like to bet?" << endl;
-            cin >> bet;
-
+            
             //Determine the random number
             num=rand()%36+1;
 
             switch(type){
                 case 'A': 
-                case 'a':{          
+                case 'a':{      
+                    question(bank, bet);
                     cout << "Which number would you like to bet from 1-36?" << endl;           
                     cin >> numBet;                         //Get user input
                     if(numBet<0 || numBet>36)
@@ -100,21 +93,39 @@ do{                                  //Would you like to play again{
                     break;
                 }
                 case 'B':
-                case 'b':{         
-                    cout << "Would you like to bet on black or red?" << endl;
+                case 'b':{     
+                    question(bank, bet);
+                    do{
+                        invalid=false;
+                    cout << "Would you like to bet on black(B) or red(C)?" << endl;
                     cin >> color;
+                    if(color.length()!=1){
+                        invalid=true;
+                    }
+                    if(color[0]!= 'r' && color[0]!= 'R' && color[0]!= 'b' && color[0]!= 'B'){
+                        invalid=true;
+                    }
+                    if(invalid==true){
+                        cout << "Invalid Entry" << endl;
+                    }
+                    }while(invalid == true);
                     co=rand()%2;
                     cout << setw(8) << "Color" << setw(15) << "Your Pick" << endl;
                     cout << "----------------------------" << endl;
-                    cout << setw(6) << co << setw(12) << color << endl;
+                    if(co==0){
+                        cout << setw(6) << "red" << setw(12) << color << endl;
+                    }
+                    else{
+                        cout << setw(6) << "black" << setw(12) << color << endl;
+                    }
                     cout << fixed << showpoint << setprecision(2) << endl;
-                    if(color=='black' && co==1)
+                    if((color[0]=='b' || color[0] =='B') && co==1)
                     { 
                         amnt = bank - bet + bet * 2;                    //Calculation
                         cout << "Congratulations! You won $" << bet * 2 << endl;
                         cout << "Now you have $" << amnt<< endl;
                     }
-                    else if(color=='red' && co==0)
+                    else if((color[0]=='r' || color[0] =='R') && co==0)
                     {
                         amnt = bank - bet + bet * 2;                    //Calculation
                         cout << "Congratulations! You won $" << bet * 2 << endl;
@@ -130,6 +141,7 @@ do{                                  //Would you like to play again{
                 }
                 case 'C':
                 case 'c': {
+                    question(bank, bet);
                     cout << "Would you like to place your bet on E(even) "
                             "or O(odd)?" << endl;
                     cin >> choice;
@@ -160,27 +172,40 @@ do{                                  //Would you like to play again{
             }
                 case 'D':
                 case 'd':{
-                    cout << "Which dozen of number would you like to bet on?" << endl;
-                    cout << "First:1-12; Second:13-24; Third: 25-36" << endl;
-                    cin >> range;
+                    question(bank, bet);
+                    do{
+                        invalid=false;
+                        cout << "Which dozen of number would you like to bet on?" << endl;
+                        cout << "1:1-12; 2:13-24; 3: 25-36" << endl;
+                        cin >> range;
 
+                        if(range.length()!=1){
+                            invalid=true;
+                        }
+                        if(range[0]<'1' || range[0]>'3' ){
+                            invalid=true;
+                        }
+                        if(invalid==true){
+                            cout << "Invalid Entry" << endl;
+                        }
+                    }while(invalid == true);
                     cout << setw(8) << "Number" << setw(15) << "Your Pick" << endl;
                     cout << "----------------------------" << endl;
                     cout << setw(6) << num << setw(12) << range << endl;
                     cout << fixed << showpoint << setprecision(2) << endl;
-                    if((num>=1 && num<=12) && range=='First')
+                    if((num>=1 && num<=12) && range[0]=='1')
                     {
                         amnt = bank - bet + bet * 3;                 //Calculation
                         cout << "Congratulations! You won $" << bet * 3 << endl;
                         cout << "Now you have $" << amnt<< endl << endl;
                     }
-                    else if((num>=13 && num<=24) && range=='Second')
+                    else if((num>=13 && num<=24) && range[0]=='2')
                     {
                         amnt = bank - bet + bet * 3;                 //Calculation
                         cout << "Congratulations! You won $" << bet * 3 << endl;
                         cout << "Now you have $" << amnt<< endl << endl;
                     }
-                    else if((num>=25 && num<=36) && range=='Third')
+                    else if((num>=25 && num<=36) && range[0]=='3')
                     {
                         amnt = bank - bet + bet * 3;                //Calculation
                         cout << "Congratulations! You won $" << bet * 3 << endl;
@@ -207,5 +232,11 @@ do{                                  //Would you like to play again{
  
 
 return 0;
+}
+void question(float &bank, float &bet){
+    cout << "How much total do you have? " << endl;
+            cin >> bank;
+            cout << "How much would you like to bet?" << endl;
+            cin >> bet;
 }
 
