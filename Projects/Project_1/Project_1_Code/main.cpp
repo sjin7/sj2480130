@@ -45,11 +45,11 @@ bool invalid;                   //For validation purpose
 //Set the random number seed
 srand(static_cast<unsigned short>(time(0)));   
 
-do{                                  //Would you like to play again{    
+do{                                  //Would you like to play again/Input Validation  
     cout << "How many times would you like to spin?" << endl;
     cin >> spin;
     for(int i=1; i<=spin; i++){     //Spin the wheel for times defined by user    
-        do{
+        do{                        
             invalid=false;
             //Menu
             cout << "Type A if you want to bet on a number. " << endl;
@@ -69,13 +69,14 @@ do{                                  //Would you like to play again{
                         invalid=false;
                         cout << "Which number would you like to bet from 1-36?" << endl;           
                         cin >> numBet;                         //Get user input
-                        if(numBet<1 || numBet>36){
+                        if(numBet<1 || numBet>36){             //Input Validation
                             invalid=true;
                         }
                         if(invalid==true){
                             cout << "Invalid Entry." << endl;
                         }
                     }while(invalid==true);
+                    //Output the result
                     cout << setw(8) << "Number" << setw(15) << "Your Pick" << endl;
                     cout << "----------------------------" << endl;
                     cout << setw(6) << num << setw(12) << numBet << endl;
@@ -99,8 +100,8 @@ do{                                  //Would you like to play again{
                     do{
                         invalid=false;
                         cout << "Would you like to bet on black(B) or red(R)?" << endl;
-                        cin >> color;
-                        if(color.length()!=1){
+                        cin >> color;                           //Get user input
+                        if(color.length()!=1){                  //Input Validation
                             invalid=true;
                         }
                         if(color[0]!= 'r' && color[0]!= 'R' && color[0]!= 'b' && color[0]!= 'B'){
@@ -110,7 +111,9 @@ do{                                  //Would you like to play again{
                             cout << "Invalid Entry" << endl;
                         }
                     }while(invalid == true);
+                    //Determine a random color 1=black, 0=red
                     co=rand()%2;
+                    //Output the result
                     cout << setw(8) << "Color" << setw(15) << "Your Pick" << endl;
                     cout << "----------------------------" << endl;
                     if(co==0){
@@ -144,8 +147,8 @@ do{                                  //Would you like to play again{
                         invalid=false;                   
                     cout << "Would you like to place your bet on E(even) "
                             "or O(odd)?" << endl;
-                    cin >> choice;
-                    if(choice.length()!=1){
+                    cin >> choice;                              //Get user input
+                    if(choice.length()!=1){                     //Input Validation
                         invalid=true;
                     }
                     if(choice[0]!='E' && choice[0]!='e' && choice[0]!= 'O' && choice[0]!='o'){
@@ -155,6 +158,7 @@ do{                                  //Would you like to play again{
                         cout << "Invalid Entry" << endl;
                     }
                     }while(invalid==true);
+                    //Output the result
                     cout << setw(8) << "Number" << setw(15) << "Your Pick" << endl;
                     cout << "----------------------------" << endl;
                     cout << setw(6) << num << setw(12) << choice << endl;
@@ -183,8 +187,8 @@ do{                                  //Would you like to play again{
                         invalid=false;
                         cout << "Which dozen of number would you like to bet on?" << endl;
                         cout << "1:1-12; 2:13-24; 3: 25-36" << endl;
-                        cin >> range;
-                        if(range.length()!=1){
+                        cin >> range;                           //Get user input
+                        if(range.length()!=1){                  //Input Validation
                             invalid=true;
                         }
                         if(range[0]<'1' || range[0]>'3' ){
@@ -194,6 +198,7 @@ do{                                  //Would you like to play again{
                             cout << "Invalid Entry" << endl;
                         }
                     }while(invalid == true);
+                    //Output the result
                     cout << setw(8) << "Number" << setw(15) << "Your Pick" << endl;
                     cout << "----------------------------" << endl;
                     cout << setw(6) << num << setw(12) << range << endl;
@@ -224,7 +229,7 @@ do{                                  //Would you like to play again{
                     cout << "Please choose from A, B, C and D." << endl << endl;
                     invalid=true;
             } // The end of switch case
-        }while(invalid==true); // The end of do-while loop
+        }while(invalid==true); // The end of do-while loop/ Input Validation for menu
     }//The end of for loop
         cout << "Would you like to play again? Type Y for yes "
             "or any other letter for no." << endl;
