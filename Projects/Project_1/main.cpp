@@ -17,7 +17,7 @@ using namespace std;
 //Global Constants
 
 //Function Prototypes
-void question(float &bank, float &bet);
+void question(float &bank, float &bet, bool &invalid);
 //Execution Begins Here!
 int main(int argc, char** argv) {
 
@@ -32,7 +32,7 @@ char type;                      //Type of bet chosen by the player
 unsigned short spin;            //How many times the player wants it to spin
 unsigned short numBet;          //The number bet
 unsigned short num;             //The actual number off the spins
-char choice;                    //The player bet on even or odd number 
+string choice;                  //The player bet on even or odd number 
 bool co;                        //The color that gives off by the spin
 string color;                   //The color of the number bet
 string range;                   //The range of the number bet
@@ -40,7 +40,7 @@ float bank;                     //The original total that the player has
 float bet;                      //The amount bet
 float amnt;                     //The amount the player have after game
 char again;                     //If the player wants to play again
-bool invalid;
+bool invalid;                   //For validation purpose
 
 //Set the random number seed
 srand(static_cast<unsigned short>(time(0)));   
@@ -48,8 +48,7 @@ srand(static_cast<unsigned short>(time(0)));
 do{                                  //Would you like to play again{    
     cout << "How many times would you like to spin?" << endl;
     cin >> spin;
-    for(int i=1; i<=spin; i++){     //Spin the wheel for times defined by user
-    
+    for(int i=1; i<=spin; i++){     //Spin the wheel for times defined by user    
         do{
             invalid=false;
             //Menu
@@ -65,26 +64,28 @@ do{                                  //Would you like to play again{
             switch(type){
                 case 'A': 
                 case 'a':{      
-                    question(bank, bet);
-                    cout << "Which number would you like to bet from 1-36?" << endl;           
-                    cin >> numBet;                         //Get user input
-                    if(numBet<0 || numBet>36)
-                    {
-                        cout << "Please pick a number 1-36." << endl;
-                    }
-
+                    question(bank, bet, invalid);
+                    do{
+                        invalid=false;
+                        cout << "Which number would you like to bet from 1-36?" << endl;           
+                        cin >> numBet;                         //Get user input
+                        if(numBet<1 || numBet>36){
+                            invalid=true;
+                        }
+                        if(invalid==true){
+                            cout << "Invalid Entry." << endl;
+                        }
+                    }while(invalid==true);
                     cout << setw(8) << "Number" << setw(15) << "Your Pick" << endl;
                     cout << "----------------------------" << endl;
                     cout << setw(6) << num << setw(12) << numBet << endl;
                     cout << fixed << showpoint << setprecision(2) << endl;
-                    if(numBet == num)
-                    {             
+                    if(numBet == num){             
                         amnt = bank - bet + bet * 36;         //Calculation
                         cout << "Congratulations! You won $" << bet * 36 << endl; 
                         cout << "Now you have $" << amnt << endl << endl;
                     }
-                    else
-                    {
+                    else{
                         amnt = bank - bet;                    //Calculation
                         cout << "Sorry, you lost $" << bet << endl;
                         cout << "Now you have $" << amnt << endl;
@@ -94,20 +95,20 @@ do{                                  //Would you like to play again{
                 }
                 case 'B':
                 case 'b':{     
-                    question(bank, bet);
+                    question(bank, bet, invalid);
                     do{
                         invalid=false;
-                    cout << "Would you like to bet on black(B) or red(C)?" << endl;
-                    cin >> color;
-                    if(color.length()!=1){
-                        invalid=true;
-                    }
-                    if(color[0]!= 'r' && color[0]!= 'R' && color[0]!= 'b' && color[0]!= 'B'){
-                        invalid=true;
-                    }
-                    if(invalid==true){
-                        cout << "Invalid Entry" << endl;
-                    }
+                        cout << "Would you like to bet on black(B) or red(R)?" << endl;
+                        cin >> color;
+                        if(color.length()!=1){
+                            invalid=true;
+                        }
+                        if(color[0]!= 'r' && color[0]!= 'R' && color[0]!= 'b' && color[0]!= 'B'){
+                            invalid=true;
+                        }
+                        if(invalid==true){
+                            cout << "Invalid Entry" << endl;
+                        }
                     }while(invalid == true);
                     co=rand()%2;
                     cout << setw(8) << "Color" << setw(15) << "Your Pick" << endl;
@@ -119,20 +120,17 @@ do{                                  //Would you like to play again{
                         cout << setw(6) << "black" << setw(12) << color << endl;
                     }
                     cout << fixed << showpoint << setprecision(2) << endl;
-                    if((color[0]=='b' || color[0] =='B') && co==1)
-                    { 
+                    if((color[0]=='b' || color[0] =='B') && co==1){ 
                         amnt = bank - bet + bet * 2;                    //Calculation
                         cout << "Congratulations! You won $" << bet * 2 << endl;
                         cout << "Now you have $" << amnt<< endl;
                     }
-                    else if((color[0]=='r' || color[0] =='R') && co==0)
-                    {
+                    else if((color[0]=='r' || color[0] =='R') && co==0){
                         amnt = bank - bet + bet * 2;                    //Calculation
                         cout << "Congratulations! You won $" << bet * 2 << endl;
                         cout << "Now you have $" << amnt<< endl;
                     }
-                    else
-                    {
+                    else{
                         cout << "Sorry, you lost $" << bet << endl;
                         cout << "Now you have $" << bank - bet << endl;
                         cout << "Good luck on your next spin!" << endl << endl;
@@ -141,29 +139,37 @@ do{                                  //Would you like to play again{
                 }
                 case 'C':
                 case 'c': {
-                    question(bank, bet);
+                    question(bank, bet, invalid);
+                    do{
+                        invalid=false;                   
                     cout << "Would you like to place your bet on E(even) "
                             "or O(odd)?" << endl;
                     cin >> choice;
-
+                    if(choice.length()!=1){
+                        invalid=true;
+                    }
+                    if(choice[0]!='E' && choice[0]!='e' && choice[0]!= 'O' && choice[0]!='o'){
+                        invalid=true;
+                    }
+                    if(invalid==true){
+                        cout << "Invalid Entry" << endl;
+                    }
+                    }while(invalid==true);
                     cout << setw(8) << "Number" << setw(15) << "Your Pick" << endl;
                     cout << "----------------------------" << endl;
                     cout << setw(6) << num << setw(12) << choice << endl;
                     cout << fixed << showpoint << setprecision(2) << endl;
-                    if(num%2==0 && (choice == 'E'|| choice == 'e'))
-                    { 
+                    if(num%2==0 && (choice[0]=='E'||choice[0]== 'e')){ 
                         amnt = bank - bet + bet * 2;                 //Calculation
                         cout << "Congratulations! You won $" << bet * 2 << endl;
                         cout << "Now you have $" << amnt<< endl;
                     }          
-                    else if(num%2==1 && (choice == 'O'||choice == 'o'))
-                    {
+                    else if(num%2==1 && (choice[0]=='O'||choice[0]=='o')){
                         amnt = bank - bet + bet * 2;                //Calculation
                         cout << "Congratulations! You won $" << bet * 2 << endl;
                         cout << "Now you have $" << amnt<< endl << endl;
                     }
-                    else
-                    {
+                    else{
                         cout << "Sorry, you lost $" << bet << endl;
                         cout << "Now you have $" << bank - bet << endl;
                         cout << "Good luck on your next spin!" << endl << endl;
@@ -172,13 +178,12 @@ do{                                  //Would you like to play again{
             }
                 case 'D':
                 case 'd':{
-                    question(bank, bet);
+                    question(bank, bet, invalid);
                     do{
                         invalid=false;
                         cout << "Which dozen of number would you like to bet on?" << endl;
                         cout << "1:1-12; 2:13-24; 3: 25-36" << endl;
                         cin >> range;
-
                         if(range.length()!=1){
                             invalid=true;
                         }
@@ -193,26 +198,22 @@ do{                                  //Would you like to play again{
                     cout << "----------------------------" << endl;
                     cout << setw(6) << num << setw(12) << range << endl;
                     cout << fixed << showpoint << setprecision(2) << endl;
-                    if((num>=1 && num<=12) && range[0]=='1')
-                    {
+                    if((num>=1 && num<=12) && range[0]=='1'){
                         amnt = bank - bet + bet * 3;                 //Calculation
                         cout << "Congratulations! You won $" << bet * 3 << endl;
                         cout << "Now you have $" << amnt<< endl << endl;
                     }
-                    else if((num>=13 && num<=24) && range[0]=='2')
-                    {
+                    else if((num>=13 && num<=24) && range[0]=='2'){
                         amnt = bank - bet + bet * 3;                 //Calculation
                         cout << "Congratulations! You won $" << bet * 3 << endl;
                         cout << "Now you have $" << amnt<< endl << endl;
                     }
-                    else if((num>=25 && num<=36) && range[0]=='3')
-                    {
+                    else if((num>=25 && num<=36) && range[0]=='3'){
                         amnt = bank - bet + bet * 3;                //Calculation
                         cout << "Congratulations! You won $" << bet * 3 << endl;
                         cout << "Now you have $" << amnt<< endl << endl;
                     }
-                    else
-                    {
+                    else{
                         cout << "Sorry, you lost $" << bet << endl;
                         cout << "Now you have $" << bank - bet << endl;
                         cout << "Good luck on your next spin!" << endl << endl;
@@ -223,20 +224,39 @@ do{                                  //Would you like to play again{
                     cout << "Please choose from A, B, C and D." << endl << endl;
                     invalid=true;
             } // The end of switch case
-        }while(invalid==true);
+        }while(invalid==true); // The end of do-while loop
     }//The end of for loop
         cout << "Would you like to play again? Type Y for yes "
             "or any other letter for no." << endl;
         cin >> again;         
 }while(again=='Y' || again=='y'); //End of do-while loop
- 
-
 return 0;
 }
-void question(float &bank, float &bet){
-    cout << "How much total do you have? " << endl;
-            cin >> bank;
-            cout << "How much would you like to bet?" << endl;
-            cin >> bet;
-}
+void question(float &bank, float &bet, bool &invalid){
 
+do{
+   invalid=false;
+   cout << "How much total do you have? " << endl;
+   cin >> bank;
+   if(bank<=0){
+       invalid=true;
+   }
+    if(invalid==true){
+       cout << "Invalid Entry. You need to have minimum 1 penny." << endl;  
+    }    
+}while(invalid==true);
+
+do{
+    invalid=false;
+    cout << "How much would you like to bet?" << endl;
+    cin >> bet;
+    if(bet<=0 || bet>bank){
+        invalid=true;
+    }
+    if(invalid==true){
+        cout << "Invalid Entry. You need to bet minimum 1 penny or " << endl;
+        cout << "you cannot bet more than $" << bank << endl;
+    }
+}while(invalid==true);
+
+}
