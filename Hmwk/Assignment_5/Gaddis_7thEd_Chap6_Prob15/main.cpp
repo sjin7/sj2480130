@@ -16,7 +16,7 @@ using namespace std;
 float CVS = 1.0e-2f; //The conversion for percentage
 
 //Function Prototypes
-int population(float, float, float, float);
+float population(float, float, float, float);
 
 //Execution Starts Here!
 int main(int argc, char** argv) {
@@ -68,7 +68,7 @@ int main(int argc, char** argv) {
     }
     return 0; 
 }
-int population(float n, float p, float b, float d){
+float population(float n, float p, float b, float d){
     
     n = p + b*CVS*p - d*CVS*p;
     return n;
