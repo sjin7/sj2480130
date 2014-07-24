@@ -26,15 +26,15 @@ int main(int argc, char** argv) {
     float sc1, sc2, sc3, sc4, sc5;
     
     //Get the five scores
-    cout << "1st Score: ";
+    cout << "1st Score: " << endl;
     getScore(sc1);
-    cout << "2nd Score: ";
+    cout << "2nd Score: " << endl;
     getScore(sc2);
-    cout << "3rd Score: ";
+    cout << "3rd Score: " << endl;
     getScore(sc3);
-    cout << "4th Score: ";
+    cout << "4th Score: " << endl;
     getScore(sc4);
-    cout << "5th Score: ";
+    cout << "5th Score: " << endl;
     getScore(sc5);
     
     //Output the average score
@@ -42,14 +42,14 @@ int main(int argc, char** argv) {
     
     return 0;
 }
-void getScore(float score){
+void getScore(float &score){
     
-    cout << "Please enter all five scores(1-100)." << endl;
+    cout << "Please enter your score(0-100)." << endl;
     cin >> score;
-    do{
+    while(score<0 || score>100){
         cout << "Invalid Entry. Please enter a score." << endl;
         cin >> score;
-    }while(score<0 || score>100);
+    }
 }
 int findLowest(float &sc1, float &sc2, float &sc3, float &sc4, float &sc5){
     

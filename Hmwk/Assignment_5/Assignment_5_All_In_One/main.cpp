@@ -23,6 +23,14 @@ float fallingDistance(float d, int t);//case3
 float kineticEnergy(float m, float v);//case4
 void celsius(int f);//case5
 void coinToss();//case6
+void getScore(float &); //case7
+void calcAverage(float &, float &, float &, float &, float &);//case7
+int findLowest(float &, float &, float &, float &, float &);//case7
+void getJudgeData(float &);//case8
+void calcScore(float &, float &, float &, float &, float &);//case8
+int findLowest(float &, float &, float &, float &, float &);//case8
+int findHighest(float &, float &, float &, float &, float &);//case8
+bool isPrime(int num);//case9
 
 //Execution Begins Here!
 int main(int argc, char** argv) {
@@ -60,7 +68,7 @@ int main(int argc, char** argv) {
                 sale_3 = getSales("Northwest");
                 sale_4 = getSales("Southwest");
 
-    findHighest(sale_1, sale_2, sale_3, sale_4);    
+                findHighest(sale_1, sale_2, sale_3, sale_4);    
                 break;
             }
             case 3:{//Gaddis_7thEd_Chap6_Prob5
@@ -70,6 +78,7 @@ int main(int argc, char** argv) {
                     cout << "For " << t << " seconds, the falling distance is "
                          <<fallingDistance(d, t) << " meters." << endl;
                 }//The end of for loop     
+                break;
             }
             case 4:{//Gaddis_7thEd_Chap6_Prob6
                 float m;            //mass
@@ -82,6 +91,7 @@ int main(int argc, char** argv) {
                 cout << fixed << showpoint << setprecision(2) << endl;
                 cout << "The Kinetic Energy of this moving object is "
                      << kineticEnergy(m,v) << "kg/(m^2/s^2)" << endl;
+                break;
             }
             case 5:{//Gaddis_7thEd_Chap6_Prob7
                 //Output table
@@ -96,6 +106,7 @@ int main(int argc, char** argv) {
                     cout << setw(5) << fahren << setw(14);
                     celsius(fahren);
                 }//The end of for loop
+                break;
             }
             case 6:{//Gaddis_7thEd_Chap6_Prob8
                 unsigned short t;                   //For t times the coin will be tossed
@@ -104,6 +115,65 @@ int main(int argc, char** argv) {
                 for(int i=1; i<=t; i++){
                     coinToss();
                 }//The end of for loop
+                break;
+            }
+            case 7:{//Gaddis_7thEd_Chap6_Prob10
+                //Declare Variables
+                float sc1, sc2, sc3, sc4, sc5, score;
+                //Get the five scores
+                cout << "1st Score: " << endl;
+                getScore(sc1);
+                cout << "2nd Score: " << endl;
+                getScore(sc2);
+                cout << "3rd Score: " << endl;
+                getScore(sc3);
+                cout << "4th Score: " << endl;
+                getScore(sc4);
+                cout << "5th Score: " << endl;
+                getScore(sc5);
+                //Output the average score
+                calcAverage(sc1, sc2, sc3, sc4, sc5);
+                break;
+            }
+            case 8:{// Gaddis_7thEd_Chap6_Prob11
+                 //Declare Variables
+                float sc1, sc2, sc3, sc4, sc5;
+                //Get the five scores
+                cout << "1st Score: " << endl;
+                getJudgeData(sc1);
+                cout << "2nd Score: " << endl;
+                getJudgeData(sc2);
+                cout << "3rd Score: " << endl;
+                getJudgeData(sc3);
+                cout << "4th Score: " << endl;
+                getJudgeData(sc4);
+                cout << "5th Score: " << endl;
+                getJudgeData(sc5);
+
+                //Output the average
+                calcScore(sc1, sc2, sc3, sc4, sc5);
+                break;
+            }
+            case 9:{//Gaddis_7thEd_Chap6_Prob21
+                //Declare Variables
+                int num;
+                //Get user input
+                cout << "Type in a number and this program will tell" << endl;
+                cout << "you if that is a prime number." << endl;
+                cin >> num;
+                if(isPrime(num)){
+                    cout << "It is a prime!" << endl;
+                }
+                else{
+                    cout << "It is not a prime." << endl;
+                }
+                break;
+            }
+            case 10:{
+                break;
+            }
+            default:{
+                cout << "Choose a problem from 1-10." << endl;
             }
         } //The end of swith case
         cout << "Type Y if you like to run another problem." << endl;
@@ -211,4 +281,78 @@ void coinToss(){
          cout << "Tails" << endl;
      }
 }
-
+void getScore(float &score){
+    cout << "Please enter your score(0-100)." << endl;
+    cin >> score;
+    while(score<0 || score>100){
+        cout << "Invalid Entry. Please enter a score." << endl;
+        cin >> score;
+    }
+}
+int findLowest(float &sc1, float &sc2, float &sc3, float &sc4, float &sc5){
+    float low;
+    low = sc1;
+    if(low>sc2) low=sc2;
+    if(low>sc3) low=sc3;
+    if(low>sc4) low=sc4;
+    if(low>sc5) low=sc5;
+    return low;
+}
+void calcAverage(float &sc1, float &sc2, float &sc3, float &sc4, float &sc5){
+    float avg;
+    float low = findLowest(sc1, sc2, sc3, sc4, sc5);
+    avg = (sc1 + sc2 + sc3 + sc4 + sc5 - low)/4;
+    cout << fixed << showpoint << setprecision(2) << endl;
+    cout << "The average of all the scores with the lowest " << endl;
+    cout << "being dropped is " << avg;
+}
+void getJudgeData(float &score){
+    cout << "Please enter your score(0-10)." << endl;
+    cin >> score;
+    while(score<0 || score>10){
+        cout << "Invalid Entry. Please enter a score." << endl;
+        cin >> score;
+    }
+}
+int findLowest(float &sc1, float &sc2, float &sc3, float &sc4, float &sc5){
+    float low;
+    low = sc1;
+    if(low>sc2) low=sc2;
+    if(low>sc3) low=sc3;
+    if(low>sc4) low=sc4;
+    if(low>sc5) low=sc5;
+    return low;
+}
+int findHighest(float &sc1, float &sc2, float &sc3, float &sc4, float &sc5){
+    float high;
+    high = sc1;
+    if(high<sc2) high=sc2;
+    if(high<sc3) high=sc3;
+    if(high<sc4) high=sc4;
+    if(high<sc5) high=sc5;
+    return high;
+}
+void calcScore(float &sc1, float &sc2, float &sc3, float &sc4, float &sc5){
+    float avg;
+    float low = findLowest(sc1, sc2, sc3, sc4, sc5);
+    float high = findHighest(sc1, sc2, sc3, sc4, sc5);
+    avg = (sc1 + sc2 + sc3 + sc4 + sc5 - low - high)/3;
+    cout << fixed << showpoint << setprecision(1) << endl;
+    cout << "The average of all the scores with the lowest and highest" << endl;
+    cout << "being dropped is " << avg;
+}
+bool isPrime(int num){
+     bool isPrime = true;
+    if(num==1 || num==2){
+        isPrime;
+    }
+    else{
+        for(int i=2; i<num-1; i++){
+            if(num % i == 0){
+                isPrime = false;
+                return isPrime;
+            }
+         }
+    }
+    return isPrime;
+}
