@@ -75,7 +75,7 @@ int main(int argc, char** argv) {
             }
             case 3:{//Gaddis_7thEd_Chap6_Prob5
                 float d;
-                for(int t=0; t<+10; t++){
+                for(int t=0; t<=10; t++){
                     cout << fixed << showpoint << setprecision(2) << endl;
                     cout << "For " << t << " seconds, the falling distance is "
                          <<fallingDistance(d, t) << " meters." << endl;

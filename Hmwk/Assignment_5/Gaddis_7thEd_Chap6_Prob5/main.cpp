@@ -21,7 +21,7 @@ int main(int argc, char** argv) {
 
     float d;
     
-for(int t=0; t<+10; t++){
+for(int t=0; t<=10; t++){
     
     cout << fixed << showpoint << setprecision(2) << endl;
     cout << "For " << t << " seconds, the falling distance is "
