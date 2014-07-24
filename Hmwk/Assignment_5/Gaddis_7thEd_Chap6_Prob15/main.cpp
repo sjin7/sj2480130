@@ -16,14 +16,14 @@ using namespace std;
 float CVS = 1.0e-2f; //The conversion for percentage
 
 //Function Prototypes
-void population(float, float, float, float);
+int population(float, float, float, float);
 
 //Execution Starts Here!
 int main(int argc, char** argv) {
     //Declare Variables
-    float n;          //New population size
-    float p;          //Previous population size
-    float b;          //Birth Rate
+    float n;           //New population size
+    float p;           //Previous population size
+    float b;           //Birth Rate
     float d;           //Death Rate
     unsigned short yr; //Number of years to display
     
@@ -53,25 +53,25 @@ int main(int argc, char** argv) {
         cin >> yr;
     }
     
-    //Diaplay Result
+    //Display Result
     cout << "Starting Population" << setw(15) << "Birth Rate" << setw(15)
          << "Death Rate" << setw(20) << "Number of Years" << setw(18)
          << "New Population" << endl;
     for (int i=0; i<=85; i++){
         cout << "-";
     }cout << endl;
-    cout << fixed << showpoint << setprecision(2);
     for(int i=1; i<=yr; i++){
+        cout << fixed << showpoint << setprecision(2);
         cout << setw(10) << p << setw(20) << b << setw(17) << d 
-             << setw(17) << i << setw(17) << population << endl;
+             << setw(17) << i << setw(17) << population(n, p, b, d) << endl;
         p = p + b*CVS*p - d*CVS*p;
     }
-    
     return 0; 
 }
-void population(float n, float p, float b, float d){
+int population(float n, float p, float b, float d){
     
     n = p + b*CVS*p - d*CVS*p;
+    return n;
 }
     
                                                   

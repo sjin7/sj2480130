@@ -13,7 +13,7 @@ using namespace std;
 //User Defined Libraries
 
 //Global Constants
-float CVPC=1.0e-2f;
+float CVS = 1.0e-2f; //The conversion for percentage case1 case10
 
 //Function Prototypes
 int calculateRetail(float, int, float, bool); //case1
@@ -214,7 +214,7 @@ int calculateRetail(float cost, int per, float retail, bool invalid){
     cout << "With the markup percentage of " << per << "%" << endl;
    
     //Calculation
-    retail = cost + cost*(static_cast<float>(per)*CVPC);
+    retail = cost + cost*(static_cast<float>(per)*CVS);
     
     return retail;
 }
