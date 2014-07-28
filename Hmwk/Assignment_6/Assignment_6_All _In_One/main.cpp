@@ -8,6 +8,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <iomanip>
+#include <fstream>
 
 using namespace std;
 //User Defined Libraries
@@ -25,11 +26,11 @@ void greatestAmount(float arr[][DAYS], int rows); //function for the greatest am
 
 //case 5
 const int MONTHS = 3; // for this problem we will use constant integers for 3 summer months
-const int DAYS = 30;  //and as well as for the 30 days ***note that 31st day is not allocated, by Gaddis book
-void readDataFromFile(char arr[][DAYS], int size); //function for reading in the data file "RainOrShine.txt:
-void showMonthlyReport(char arr[][DAYS], int size); //function to store weather patterns for each month
+const int DAY = 30;  //and as well as for the 30 days ***note that 31st day is not allocated, by Gaddis book
+void readDataFromFile(char arr[][DAY], int size); //function for reading in the data file "RainOrShine.txt:
+void showMonthlyReport(char arr[][DAY], int size); //function to store weather patterns for each month
 void showTotalReport(int rainy, int cloudy, int sunny);//function to allocate in what days were Rainy,cloudy,and sunny
-void monthWithMostRain(char arr[][DAYS], int size); //function for the month with the largest amount of rain
+void monthWithMostRain(char arr[][DAY], int size); //function for the month with the largest amount of rain
 
 //case 7
 const int NUM_QUES = 20;//holds the number of questions that is set to 20, as instructed by book
@@ -213,7 +214,7 @@ int main(int argc, char** argv) {
             }
             case 5:{// Gaddis_7thEd_Chap7_Prob5
                  //declares string for months and days 2D Array
-                char weatherStatistics[MONTHS][DAYS];
+                char weatherStatistics[MONTHS][DAY];
                 //fstream reading from file "RainOrShine.txt"
                 readDataFromFile(weatherStatistics, MONTHS);
                 //displays the monthly weather report
@@ -515,30 +516,27 @@ void greatestAmount(float arr[][DAYS], int rows){
         // empty line
         cout << endl; 
 }
-void readDataFromFile(char arr[][DAYS], int size){ //function for reading in data from file
+void readDataFromFile(char arr[][DAY], int size){ //function for reading in data from file
                                                      //the data stored in file was given by book
             // open file.
             ifstream inputFile("RainOrShine.txt"); //the txt file has three rows representing the 3 months of summer
             if (!inputFile){                       // it then has 30 days indicating R for rainy, C for cloudy, S for sunny
-                                              //note**no information of weather was collected for the 31st day(from book)
+                                               //note**no information of weather was collected for the 31st day(from book)
                     cout << "ERROR: cannot find/read file." << endl;
                 
             }
      
             // read data.
             for (int nRow = 0; nRow < size; nRow++){
-                    for (int nCol = 0; (nCol < DAYS) && (inputFile >> arr[nRow][nCol]); nCol++){
-
+                    for (int nCol = 0; (nCol < DAY) && (inputFile >> arr[nRow][nCol]); nCol++){
                     }
             }
-     
             inputFile.close();
-          
     }
      
     // showMonthlyReport function
    //this void function will store in how many days (30) weather patterns occurred for the summer months
-    void showMonthlyReport(char arr[][DAYS], int size){
+    void showMonthlyReport(char arr[][DAY], int size){
             // pass by value to next function.
             static int totalRainy = 0;
             int totalCoudy = 0;
@@ -554,7 +552,7 @@ void readDataFromFile(char arr[][DAYS], int size){ //function for reading in dat
                     int sunny = 0;
                     int mismatch = 0;
      
-                    for (int nCols = 0; nCols < DAYS; nCols++){
+                    for (int nCols = 0; nCols < DAY; nCols++){
                             // checks for rainy, cloudy or sunny.
                             if (arr[nRows][nCols] == 'R'){
                                     rainy++;
@@ -575,14 +573,12 @@ void readDataFromFile(char arr[][DAYS], int size){ //function for reading in dat
                                     totalMismatch++;
                             }
                     }
-               
                     cout << "Month " << (nRows + 1); //this will display the monthly report of weather patterns
                     cout << ": Rain (" << rainy;
                     cout << ") - Cloudy (" << cloudy;
                     cout << ") - Sunny (" << sunny;
                     cout << ")" << endl;
             }
-     
             // send
             showTotalReport(totalRainy, totalCoudy, totalSunny);
     }
@@ -599,21 +595,26 @@ void readDataFromFile(char arr[][DAYS], int size){ //function for reading in dat
      
     // monthWithMostRain function
     //from this we will be able to determine which month had the largest amount of rain, as instructed by book
-    void monthWithMostRain(char arr[][DAYS], int size){
+   void monthWithMostRain(char arr[][DAY], int size)
+    {
             char months[3][7] = {"June", "July", "August"}; //3 by 7 
             int subscript = -1;
             int rainy = 0;
             int highest = 0;
      
-            for (int nRows = 0; nRows < size; nRows++){
-                    for (int nCols = 0; nCols < DAYS; nCols++){                      
+            for (int nRows = 0; nRows < size; nRows++)
+            {
+                    for (int nCols = 0; nCols < DAY; nCols++)
+                    {                      
                             // check if rainy.
-                            if (arr[nRows][nCols] == 'R') //Rainy{
+                            if (arr[nRows][nCols] == 'R') //Rainy
+                            {
                                     rainy++;
                             }
                     }
                     // checks for the highest amount of rainy days
-                    if (rainy > highest){
+                    if (rainy > highest)
+                    {
                             highest = rainy;
                             subscript++;
                     }
@@ -622,7 +623,9 @@ void readDataFromFile(char arr[][DAYS], int size){ //function for reading in dat
             
             cout << "\nThe month " << months[subscript] << " had the largest amount of rain." << endl;
     }       //this will display which month had the largest amount of rain
-    
+
+
+
 //void function that checks the student answers and comparing it to the correct answers
 //using for loop and if statement: if the answers given by user is equal to student answers
 void checkAnswers(char answers1[], char stu_answers1[], int NUM_QUES, int MIN_COR) {
