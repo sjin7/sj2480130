@@ -11,7 +11,7 @@
 #include <iomanip>
 #include <string>
 #include <fstream>
-
+#include <vector>
 using namespace std;
 //User Defined Libraries
 
@@ -19,10 +19,11 @@ using namespace std;
 
 //Function Prototypes
 void question(float &bank, float &bet, bool &invalid);
-float winLosA (int numBet, int num, float amnt, float bank, float bet);
-float winLosB (bool &co, string &color, float &amnt, float &bank, float &bet);
-float winLosC (string choice, int num, float amnt, float bank, float bet);
-float winLosD (string range, int num, float amnt, float bank, float bet);
+void winLosA (int numBet, int num, float &amnt, float &bank, float bet, vector<float>&);
+void winLosB (bool co, string color, float &amnt, float &bank, float bet, vector<float>&);
+void winLosC (string choice, int num, float &amnt, float &bank, float bet, vector<float>&);
+void winLosD (string range, int num, float &amnt, float &bank, float bet, vector<float>&);
+void display (vector<char>&, vector<float>&, vector<float>&);
 
 //Execution Begins Here!
 int main(int argc, char** argv) {
@@ -47,7 +48,9 @@ int main(int argc, char** argv) {
     float amnt;                     //The amount the player have after game
     char again;                     //If the player wants to play again
     bool invalid;                   //For validation purpose
-    
+    vector<char> v1;            //plan
+    vector<float> v2,v3;
+    int turn=1;
     //Set the random number seed
     srand(static_cast<unsigned short>(time(0)));   
     //Determine the random number
@@ -56,6 +59,7 @@ int main(int argc, char** argv) {
     do{                              //Would you like to play again/Input Validation  
         cout << "How many times would you like to spin?" << endl;
         cin >> spin;
+        question(bank, bet, invalid);               //Use function  
         for(int i=0; i<spin; i++){     //Spin the wheel for times defined by user    
             do{                        
                 invalid=false;
@@ -65,12 +69,14 @@ int main(int argc, char** argv) {
                 cout << "Type C if you want to bet whether the number is odd or even." <<endl;
                 cout << "Type D if you want to bet on a dozen of numbers by ranging."<< endl;
                 cin >> type;
-
+                v2.push_back(static_cast<float>(turn));
+                turn++;
                 //Start of switch case
                 switch(type){
                     case 'A': 
-                    case 'a':{      
-                        question(bank, bet, invalid);               //Use function       
+                    case 'a':{ 
+                        v1.push_back(65);
+                             
                         do{
                             invalid=false;
                             cout << "Which number would you like to bet from 1-36?" << endl;           
@@ -87,12 +93,13 @@ int main(int argc, char** argv) {
                         cout << "----------------------------" << endl;
                         cout << setw(6) << num << setw(12) << numBet << endl;
                         cout << fixed << showpoint << setprecision(2) << endl;
-                        winLosA(numBet, num, amnt, bank, bet);
+                        winLosA(numBet, num, amnt, bank, bet, v3);
+                        v3.push_back(amnt);
                         break;
                     }
                     case 'B':
-                    case 'b':{     
-                        question(bank, bet, invalid);
+                    case 'b':{    
+                        v1.push_back(66);
                         do{
                             invalid=false;
                             cout << "Would you like to bet on black(B) or red(R)?" << endl;
@@ -119,12 +126,13 @@ int main(int argc, char** argv) {
                             cout << setw(6) << "black" << setw(12) << color << endl;
                         }
                         cout << fixed << showpoint << setprecision(2) << endl;
-                        winLosB(co, color, amnt, bank, bet);
+                        winLosB(co, color, amnt, bank, bet, v3);
+                        v3.push_back(amnt);
                         break;
                     }
                     case 'C':
                     case 'c': {
-                        question(bank, bet, invalid);
+                        v1.push_back(67);
                         do{
                             invalid=false;                   
                         cout << "Would you like to place your bet on E(even) "
@@ -145,12 +153,13 @@ int main(int argc, char** argv) {
                         cout << "----------------------------" << endl;
                         cout << setw(6) << num << setw(12) << choice << endl;
                         cout << fixed << showpoint << setprecision(2) << endl;   
-                        winLosC (choice, num, amnt, bank, bet);
+                        winLosC (choice, num, amnt, bank, bet, v3);
+                        v3.push_back(amnt);
                         break;
                     }
                     case 'D':
                     case 'd':{
-                        question(bank, bet, invalid);
+                        v1.push_back(68);
                         do{
                             invalid=false;
                             cout << "Which dozen of number would you like to bet on?" << endl;
@@ -171,7 +180,8 @@ int main(int argc, char** argv) {
                         cout << "----------------------------" << endl;
                         cout << setw(6) << num << setw(12) << range << endl;
                         cout << fixed << showpoint << setprecision(2) << endl;         
-                        winLosD (range, num, amnt, bank, bet);
+                        winLosD (range, num, amnt, bank, bet, v3);
+                        v3.push_back(amnt);
                         break;
                     }
                     default:
@@ -184,6 +194,8 @@ int main(int argc, char** argv) {
                 "or any other letter for no." << endl;
             cin >> again;         
     }while(again=='Y' || again=='y'); //End of do-while loop
+
+    display(v1, v2, v3);
     return 0;
     }
 
@@ -212,7 +224,7 @@ void question(float &bank, float &bet, bool &invalid){
         }
     }while(invalid==true);
 }
-float winLosA (int numBet, int num, float amnt, float bank, float bet){
+void winLosA (int numBet, int num, float &amnt, float &bank, float bet, vector<float> &v3){
     if(numBet == num){             
         amnt = bank - bet + bet * 36;         //Calculation for win
         cout << "Congratulations! You won $" << bet * 36 << endl; 
@@ -223,9 +235,10 @@ float winLosA (int numBet, int num, float amnt, float bank, float bet){
         cout << "Sorry, you lost $" << bet << endl;
         cout << "Now you have $" << amnt << endl;
         cout << "Good luck on your next spin!" << endl << endl;
-    } 
+    }
+    
 }
-float winLosB (bool &co, string &color, float &amnt, float &bank, float &bet){
+void winLosB (bool co, string color, float &amnt, float &bank, float bet, vector<float> &v3){
     if((color[0]=='b' || color[0] =='B') && co==1){ 
         amnt = bank - bet + bet * 2;                    //Calculation for win
         cout << "Congratulations! You won $" << bet * 2 << endl;
@@ -241,8 +254,9 @@ float winLosB (bool &co, string &color, float &amnt, float &bank, float &bet){
         cout << "Now you have $" << bank - bet << endl;
         cout << "Good luck on your next spin!" << endl << endl;
     }
+
 }
-float winLosC (string choice, int num, float amnt, float bank, float bet){
+void winLosC (string choice, int num, float &amnt, float &bank, float bet, vector<float> &v3){
     if(num%2==0 && (choice[0]=='E'||choice[0]== 'e')){ 
         amnt = bank - bet + bet * 2;                 //Calculation for win
         cout << "Congratulations! You won $" << bet * 2 << endl;
@@ -258,8 +272,9 @@ float winLosC (string choice, int num, float amnt, float bank, float bet){
         cout << "Now you have $" << bank - bet << endl;
         cout << "Good luck on your next spin!" << endl << endl;
     }
+ 
 }
-float winLosD (string range, int num, float amnt, float bank, float bet){
+void winLosD (string range, int num, float &amnt, float &bank, float bet, vector<float> &v3){
     if((num>=1 && num<=12) && range[0]=='1'){
         amnt = bank - bet + bet * 3;                 //Calculation for win
         cout << "Congratulations! You won $" << bet * 3 << endl;
@@ -280,4 +295,58 @@ float winLosD (string range, int num, float amnt, float bank, float bet){
         cout << "Now you have $" << bank - bet << endl;
         cout << "Good luck on your next spin!" << endl << endl;
     }
+
+}
+void display (vector<char> &v1, vector<float> &v2, vector<float> &v3){
+    const int ROWS=100, COLS=2;
+    char cv1[ROWS][COLS];
+    float  cv23[ROWS][COLS];           //v2+v3
+    bool swap;
+    char ctemp;
+    int temp;
+    
+    
+    for(int i=0;i<v1.size();i++){
+        cv1[i][0]=v1[i];
+        cv23[i][0]=v2[i];
+        cv23[i][1]=v3[i];
+    }
+    do{
+        swap=false;
+        for(int i=0;i<v1.size()-1;i++){
+            if(cv1[i][0]>cv1[i+1][0]){
+                ctemp=cv1[i][0];
+                cv1[i][0]=cv1[i+1][0];
+                cv1[i+1][0]=ctemp;
+                for(int j=0;j<2;j++){
+                    temp=cv23[i][j];
+                    cv23[i][j]=cv23[i+1][j];
+                    cv23[i+1][j]=temp;
+                }
+                swap=true;
+            }
+        }
+    }while(swap);
+   
+    do{
+        swap=false;
+        for(int i=0;i<v1.size()-1;i++){
+            if(cv23[i][1]<cv23[i+1][1] && cv1[i][0]==cv1[i+1][0]){
+                ctemp=cv1[i][0];
+                cv1[i][0]=cv1[i+1][0];
+                cv1[i+1][0]=ctemp;
+                for(int j=0;j<2;j++){
+                    temp=cv23[i][j];
+                    cv23[i][j]=cv23[i+1][j];
+                    cv23[i+1][j]=temp;
+                }
+                swap=true;
+            }
+        }
+    }while(swap);
+    
+    for(int i=0;i<v1.size();i++){
+        cout<<cv1[i][0]<<" "<<cv23[i][0]<<" "<<cv23[i][1]<<endl;
+    }
+    cout<<"\n\n";
 }
