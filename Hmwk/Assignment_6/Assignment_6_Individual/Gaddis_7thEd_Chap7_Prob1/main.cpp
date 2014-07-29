@@ -18,8 +18,8 @@ using namespace std;
 //Execution Starts Here!
 int main(int argc, char** argv) {
     const int SIZE=10;
-    int array[SIZE];
-    int small,large;
+    float array[SIZE];
+    float small,large;
    
     for(int i=0;i<SIZE;i++){
             cout<<"Value "<<i+1<<":";

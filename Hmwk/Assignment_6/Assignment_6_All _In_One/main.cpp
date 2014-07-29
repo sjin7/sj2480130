@@ -95,7 +95,7 @@ int main(int argc, char** argv) {
                         cout << "Please enter the rainfall inches for all the months:" << endl;
 
                         //positive number validation as instructed by book
-                        for (int i = 1; i <= 12; i++){
+                        for (int i = 0; i < 12; i++){
                                 cout << monthNames[i] << ": ";
                                 cin >> monthlyTotals[i];
 
@@ -106,7 +106,7 @@ int main(int argc, char** argv) {
                         }	
 
                         //for loop i is set to 0 and i is less than 12
-                        for (int i=1; i <=12; i++){
+                        for (int i=0; i <12; i++){
                                 total = total + monthlyTotals[i]; //adds the total rainfall for the months
                         }
 
@@ -119,7 +119,7 @@ int main(int argc, char** argv) {
                         low = monthlyTotals[0];
                         lowestMonth = monthNames[0];
 
-                        for (int i=1; i<=12; i++){
+                        for (int i=0; i<12; i++){
                                 if (monthlyTotals[i] > high) {
                                         high = monthlyTotals[i]; 
                                         highestMonth = monthNames[i];

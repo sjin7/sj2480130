@@ -1,0 +1,9 @@
+Exception: STATUS_ACCESS_VIOLATION at eip=472A0A29
+eax=41B80000 ebx=00000000 ecx=000074D9 edx=00000030 esi=0028A994 edi=0028A968
+ebp=0028AC38 esp=0028A8E0 program=C:\Users\rcc\Desktop\sj2480130\Hmwk\Assignment_6\Assignment_6_All _In_One\dist\Debug\Cygwin_4.x-Windows\assignment_6_all__in_one.exe, pid 6104, thread main
+cs=0023 ds=002B es=002B fs=0053 gs=002B ss=002B
+Stack trace:
+Frame     Function  Args
+0028AC38  472A0A29 (00000001, 0028AC5C, 80010100, 61007F58)
+0028ACF8  61007FB5 (00000000, 0028CD84, 61007120, 00000000)
+End of stack trace
