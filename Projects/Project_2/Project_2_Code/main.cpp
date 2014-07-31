@@ -33,7 +33,7 @@ int main(int argc, char** argv) {
     //Introduction of the game rules
     cout << "This program is a simplified roulette game."<< endl;
     cout << "Game Rules:";
-    //Input game rules
+    //Input game rules/ read file
     ifstream myFile;
     myFile.open("GameRules.txt");
     string line;
@@ -60,7 +60,7 @@ int main(int argc, char** argv) {
     float amnt;                     //The amount the player have after game
     char again;                     //If the player wants to play again
     bool invalid;                   //For validation purpose
-    vector<char> v1;            //plan
+    vector<char> v1;                //Vectors and arrays for 2-D output
     vector<float> v2,v3;
     int turn=1;
     //Set the random number seed
@@ -217,9 +217,9 @@ int main(int argc, char** argv) {
 void question(float &bank, float &bet, bool &invalid){
     do{
         invalid=false;
-        cout << "How much total do you have? " << endl;
+        cout << "How much total do you have? " << endl;         //Get user input at the beginning of each game
         cin >> bank;
-        if(bank<=0){
+        if(bank<=0){                                            //Input validation
             invalid=true;
         }
         if(invalid==true){
@@ -314,9 +314,9 @@ void winLosD (string range, int num, float &amnt, float &bank, float bet, vector
 }
 void display (vector<char> &v1, vector<float> &v2, vector<float> &v3){
     const int ROWS=100, COLS=2;
-    char cv1[ROWS][COLS];
-    float  cv23[ROWS][COLS];           //v2+v3
-    bool swap;
+    char cv1[ROWS][COLS];                                       //Set up rows and columns for 2-D array
+    float  cv23[ROWS][COLS];                                    //v2+v3
+    bool swap;                                                  //For swap purposes
     char ctemp;
     int temp;
     
@@ -360,12 +360,12 @@ void display (vector<char> &v1, vector<float> &v2, vector<float> &v3){
         }
     }while(swap);
     
+    //Display and formatting
     cout << "Game Type" << setw(10) << "Spin" << setw(12) << "Amoumt" << endl;
     for(int i=0;i<v1.size();i++){
         cout<< setw(5) << cv1[i][0]
-            << setw(13) << static_cast<int>(cv23[i][0])
+            << setw(13) << static_cast<int>(cv23[i][0]) //static cast to display "spin" without decimal places
             << setw(8) << "$" << cv23[i][1]<<endl;
-            
     }
     cout<<"\n\n";
 }
