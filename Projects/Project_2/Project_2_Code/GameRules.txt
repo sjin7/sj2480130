@@ -1,0 +1,15 @@
+
+Type A: 
+This is betting that one particular number on the wheel will come up. 
+This bet is done by placing a chip on top of the number on which you want to bet. 
+If that number wins, the payoff is 35 to 1.
+Type B:
+You are betting that the next number to come up is a red/black. 
+If the next number landed is the color you bet, you will be paid 1 to 1, 
+or even money. 
+Type C:
+This is wagering that the ball will land on an even or odd number.
+The payoff is 1 to 1.
+Type D:
+These bets divide the table into the numbers 1-12, 13-24, and 25-36.
+This bet pays 2 to 1.

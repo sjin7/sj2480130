@@ -12,6 +12,7 @@
 #include <string>
 #include <fstream>
 #include <vector>
+
 using namespace std;
 //User Defined Libraries
 
@@ -30,9 +31,20 @@ int main(int argc, char** argv) {
 
     //This is a program of Roulette
     //Introduction of the game rules
-    cout << "Roulette is a casino game named after a French " << endl;
-    cout << "diminutive for little wheel. " << endl;
-    cout << "This program is a simplified roulette game." << endl;
+    cout << "This program is a simplified roulette game."<< endl;
+    cout << "Game Rules:";
+    //Input game rules
+    ifstream myFile;
+    myFile.open("GameRules.txt");
+    string line;
+    string file_contents;
+    while(getline(myFile, line)){
+     file_contents += line;
+     file_contents.push_back('\n');
+     cout << line << endl;
+    }
+    cout << endl << endl;
+    myFile.close();
 
     //Declare Variables
     char type;                      //Type of bet chosen by the player
@@ -59,7 +71,7 @@ int main(int argc, char** argv) {
     do{                              //Would you like to play again/Input Validation  
         cout << "How many times would you like to spin?" << endl;
         cin >> spin;
-        question(bank, bet, invalid);               //Use function  
+        
         for(int i=0; i<spin; i++){     //Spin the wheel for times defined by user    
             do{                        
                 invalid=false;
@@ -75,8 +87,8 @@ int main(int argc, char** argv) {
                 switch(type){
                     case 'A': 
                     case 'a':{ 
-                        v1.push_back(65);
-                             
+                        question(bank, bet, invalid);               //Call the function
+                        v1.push_back(65);                           //Put into the vector
                         do{
                             invalid=false;
                             cout << "Which number would you like to bet from 1-36?" << endl;           
@@ -93,12 +105,13 @@ int main(int argc, char** argv) {
                         cout << "----------------------------" << endl;
                         cout << setw(6) << num << setw(12) << numBet << endl;
                         cout << fixed << showpoint << setprecision(2) << endl;
-                        winLosA(numBet, num, amnt, bank, bet, v3);
-                        v3.push_back(amnt);
-                        break;
+                        winLosA(numBet, num, amnt, bank, bet, v3); //Call the function
+                        v3.push_back(amnt);                        //Put amount into vector
+                        break; 
                     }
                     case 'B':
                     case 'b':{    
+                        question(bank, bet, invalid);               //Call the function
                         v1.push_back(66);
                         do{
                             invalid=false;
@@ -126,12 +139,13 @@ int main(int argc, char** argv) {
                             cout << setw(6) << "black" << setw(12) << color << endl;
                         }
                         cout << fixed << showpoint << setprecision(2) << endl;
-                        winLosB(co, color, amnt, bank, bet, v3);
-                        v3.push_back(amnt);
+                        winLosB(co, color, amnt, bank, bet, v3);   //Call the function
+                        v3.push_back(amnt);                        //Put amount into vector
                         break;
                     }
                     case 'C':
                     case 'c': {
+                        question(bank, bet, invalid);               //Call the function
                         v1.push_back(67);
                         do{
                             invalid=false;                   
@@ -153,12 +167,13 @@ int main(int argc, char** argv) {
                         cout << "----------------------------" << endl;
                         cout << setw(6) << num << setw(12) << choice << endl;
                         cout << fixed << showpoint << setprecision(2) << endl;   
-                        winLosC (choice, num, amnt, bank, bet, v3);
-                        v3.push_back(amnt);
+                        winLosC (choice, num, amnt, bank, bet, v3);   //Call the function
+                        v3.push_back(amnt);                           //Put amount into vector
                         break;
                     }
                     case 'D':
                     case 'd':{
+                        question(bank, bet, invalid);               //Call the function
                         v1.push_back(68);
                         do{
                             invalid=false;
@@ -180,8 +195,8 @@ int main(int argc, char** argv) {
                         cout << "----------------------------" << endl;
                         cout << setw(6) << num << setw(12) << range << endl;
                         cout << fixed << showpoint << setprecision(2) << endl;         
-                        winLosD (range, num, amnt, bank, bet, v3);
-                        v3.push_back(amnt);
+                        winLosD (range, num, amnt, bank, bet, v3);   //Call the function
+                        v3.push_back(amnt);                          //Put amount into vector
                         break;
                     }
                     default:
@@ -195,7 +210,7 @@ int main(int argc, char** argv) {
             cin >> again;         
     }while(again=='Y' || again=='y'); //End of do-while loop
 
-    display(v1, v2, v3);
+    display(v1, v2, v3);              //Call the function
     return 0;
     }
 
@@ -345,8 +360,12 @@ void display (vector<char> &v1, vector<float> &v2, vector<float> &v3){
         }
     }while(swap);
     
+    cout << "Game Type" << setw(10) << "Spin" << setw(12) << "Amoumt" << endl;
     for(int i=0;i<v1.size();i++){
-        cout<<cv1[i][0]<<" "<<cv23[i][0]<<" "<<cv23[i][1]<<endl;
+        cout<< setw(5) << cv1[i][0]
+            << setw(13) << static_cast<int>(cv23[i][0])
+            << setw(8) << "$" << cv23[i][1]<<endl;
+            
     }
     cout<<"\n\n";
 }
