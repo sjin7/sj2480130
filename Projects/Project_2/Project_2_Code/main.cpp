@@ -25,6 +25,21 @@ void winLosB (bool co, string color, float &amnt, float &bank, float bet, vector
 void winLosC (string choice, int num, float &amnt, float &bank, float bet, vector<float>&);
 void winLosD (string range, int num, float &amnt, float &bank, float bet, vector<float>&);
 void display (vector<char>&, vector<float>&, vector<float>&);
+void sample(int spin=2, char type='A', float bank=200, float bet=100, int numBet=23){
+    cout << "How many times would you like to spin?" << endl;
+    cout << spin << endl;
+    cout << "Type A if you want to bet on a number. " << endl;
+    cout << "Type B if you want to bet on a colors red or black." << endl;
+    cout << "Type C if you want to bet whether the number is odd or even." <<endl;
+    cout << "Type D if you want to bet on a dozen of numbers by ranging."<< endl;
+    cout << type << endl;
+    cout << "How much total do you have? " << endl;         
+    cout << bank << endl;
+    cout << "How much would you like to bet?" << endl;
+    cout << bet << endl;
+    cout << "Which number would you like to bet from 1-36?" << endl;           
+    cout << numBet << endl;              
+} // Default Parameter
 
 //Execution Begins Here!
 int main(int argc, char** argv) {
@@ -32,6 +47,7 @@ int main(int argc, char** argv) {
     //This is a program of Roulette
     //Introduction of the game rules
     cout << "This program is a simplified roulette game."<< endl;
+    cout << "-------------------------------------------" << endl;
     cout << "Game Rules:";
     //Input game rules/ read file
     ifstream myFile;
@@ -45,7 +61,15 @@ int main(int argc, char** argv) {
     }
     cout << endl << endl;
     myFile.close();
-
+    
+    //Display a sample of user input
+    cout << "This is an example of a player's input" << endl;
+    cout << "--------------------------------------" << endl;
+    sample();
+    
+    cout << "Now the real game starts!!" << endl;
+    cout << "--------------------------------------" << endl << endl;
+    
     //Declare Variables
     char type;                      //Type of bet chosen by the player
     unsigned short spin;            //How many times the player wants it to spin
@@ -316,7 +340,7 @@ void display (vector<char> &v1, vector<float> &v2, vector<float> &v3){
     const int ROWS=100, COLS=2;
     char cv1[ROWS][COLS];                                       //Set up rows and columns for 2-D array
     float  cv23[ROWS][COLS];                                    //v2+v3
-    bool swap;                                                  //For swap purposes
+    bool swap;                                                  //For sorting
     char ctemp;
     int temp;
     
@@ -326,6 +350,7 @@ void display (vector<char> &v1, vector<float> &v2, vector<float> &v3){
         cv23[i][0]=v2[i];
         cv23[i][1]=v3[i];
     }
+   
     do{
         swap=false;
         for(int i=0;i<v1.size()-1;i++){
